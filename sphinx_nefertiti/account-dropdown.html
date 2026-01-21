@@ -1,0 +1,44 @@
+{# sphinx_nefertiti/account-dropdown.html #}
+{#
+  UI rules:
+  - If cookie exists (handled by JS): show Account dropdown with username label + Sign out item
+  - If cookie does not exist: show Sign in button
+  Notes:
+  - JS toggles visibility using the element IDs below.
+  - URLs are literal paths, so no ".html" suffix will be added.
+#}
+
+{# Allow theme options to override URLs if desired #}
+{% set signin_url  = theme_signin_url  | default('/signin') %}
+{% set signout_url = theme_signout_url | default('/signout') %}
+
+{# --- Sign in button (default visible; JS will hide when logged in) --- #}
+<a id="snftt-signin-btn"
+   class="btn btn-sm btn-outline-primary ms-2"
+   href="{{ signin_url }}">
+  {{ _('Sign in') }}
+</a>
+
+{# --- Account dropdown (default hidden; JS will show when logged in) --- #}
+<li id="snftt-account-dropdown" class="nav-item dropdown" style="display:none">
+  <a class="nav-link d-flex py-2 px-0 px-xl-2 dropdown-toggle align-items-center"
+     id="snftt-account"
+     href="#"
+     data-bs-toggle="dropdown"
+     data-bs-display="static"
+     aria-label="{{ _('Account') }}">
+    <span class="ms-2" id="snftt-account-label">{{ _('Account') }}</span>
+  </a>
+
+  <ul class="dropdown-menu dropdown-menu-end dropdown-limit-max-height"
+      aria-labelledby="snftt-account">
+    <li>
+      <h6 class="dropdown-header">{{ _('Account') }}</h6>
+    </li>
+    <li>
+      <a class="dropdown-item" id="snftt-signout-link" href="{{ signout_url }}">
+        {{ _('Sign out') }}
+      </a>
+    </li>
+  </ul>
+</li>
