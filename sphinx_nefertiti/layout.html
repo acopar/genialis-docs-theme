@@ -27,6 +27,25 @@
 <html class="no-js" {% if language is not none %}lang="{{ language }}"{% endif %} data-content_root="{{ content_root }}">
   <head>
     <meta charset="utf-8" />
+      <script>
+      (function () {
+        try {
+          // Nefertiti stores this in localStorage
+          var stored = localStorage.getItem("snftt-color-scheme") || "default";
+          var preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          var scheme = (stored === "default") ? preferred : stored;
+
+          var el = document.documentElement;
+          el.classList.remove("light", "dark");
+          el.classList.add(scheme);
+
+          // Optional: set a background immediately to avoid a white/black flash before CSS loads
+          // el.style.backgroundColor = (scheme === "dark") ? "#0b0f14" : "#ffffff";
+        } catch (e) {
+          // ignore
+        }
+      })();
+      </script>
     {%- if metatags %}
       {{ metatags }}
     {%- endif %}
