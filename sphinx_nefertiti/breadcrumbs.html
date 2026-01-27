@@ -1,7 +1,16 @@
 <div class="d-flex flex-row justify-content-between">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ pathto(master_doc) }}">{{ _('Start') }}</a></li>
+      {# Determine whether this is the root docs project #}
+      {% set is_root_docs = (theme_project_short == 'Docs') or (project|striptags == 'Genialis Documentation') %}
+
+      {# 1) Add "Docs" crumb only for subprojects #}
+      {% if not is_root_docs %}
+        <li class="breadcrumb-item">
+          <a href="{{ theme_logo_url|default('https://docs.genialis.com/') }}">Docs</a>
+        </li>
+      {% endif %}
+      <li class="breadcrumb-item"><a href="{{ pathto(master_doc) }}">{{ theme_project_short | default('Start') }}</a></li>
       {%- for doc in parents %}
         <li class="breadcrumb-item"><a href="{{ doc.link|e }}">{{ doc.title }}</a></li>
       {%- endfor %}
