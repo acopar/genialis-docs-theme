@@ -139,6 +139,16 @@
         line-height: var(--nftt-pre-line-height, 140%);
       }
     </style>
+    {% if theme_google_analytics_id %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ theme_google_analytics_id|e }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ theme_google_analytics_id|e }}');
+    </script>
+    {% endif %}
   </head>
   <body>
     <div id="back-to-top-container" class="position-fixed start-50 translate-middle-x">
