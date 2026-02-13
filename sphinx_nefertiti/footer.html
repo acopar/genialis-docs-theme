@@ -1,12 +1,24 @@
 {%- block footer -%}
 <div class="py-5 px-4 px-md-3">
   <div class="container">
-    {% if footer_links %}
+    {% set links = footer_links or [
+      {"text":"Homepage","link":"https://www.genialis.com/"},
+      {"text":"News and Events","link":"https://www.genialis.com/category/news/"},
+      {"text":"Customer Support","link":"https://genialis.atlassian.net/servicedesk/customer/portal/3"},
+    ] %}
+    {% if links %}
     <div class="row">
       <ul id="nftt-footer-links" class="list-unstyled list-separator col-lg-12 pb-2 text-center">
-        {% for item in footer_links %}
+        {% for item in links %}
+          {% set href = item.link %}
+          {% if href.startswith('http://') or href.startswith('https://') or href.startswith('mailto:') %}
+            {% set url = href %}
+          {% else %}
+            {# pathto(docname, 1) expects a docname without .html; you can also use item.resource if you need it #}
+            {% set url = pathto(href, 1) %}
+          {% endif %}
           <li class="d-inline">
-            <a href="{{ pathto(item.link, item.resource) }}" {% if 'target' in item %}target="{{ item.target }}"{% endif %} class="list-item">{{ item.text }}</a>
+            <a href="{{ url|e }}" {% if 'target' in item %}target="{{ item.target }}"{% endif %} class="list-item">{{ item.text }}</a>
           </li>
         {% endfor %}
       </ul>
