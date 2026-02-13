@@ -66,14 +66,18 @@
       <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
     {% endblock %}
     <link rel="canonical" href="{{ pagename }}" />
-    {%- if favicon_url %}
+    {# Prefer project html_favicon; fallback to theme favicon if set #}
+    {% if favicon_url %}
       <link rel="icon" href="{{ favicon_url|e }}" />
-    {%- endif %}
+    {% elif theme_favicon %}
+      <link rel="icon" href="{{ pathto('_static/' ~ theme_favicon, 1)|e }}" />
+    {% endif %}
     {%- if use_opensearch %}
     <link rel="search" type="application/opensearchdescription+xml"
           title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
           href="{{ pathto('_static/opensearch.xml', 1) }}"/>
     {%- endif %}
+    <link rel="stylesheet" href="{{ pathto('_static/css/custom.css', 1) }}" type="text/css" />
     {%- for css in css_files %}
       {%- if css.filename not in ["_static/basic.css",] %}
         {%- if css.filename is not none %}
@@ -106,6 +110,8 @@
       {%- if prev %}
         <link rel="prev" title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}" />
       {%- endif %}
+    <script defer src="{{ pathto('_static/js/account-ui.js', 1) }}"></script>
+    <script defer src="{{ pathto('_static/js/protected-nav.js', 1) }}"></script>
     {% endblock -%}
     {%- block extrahead %}{% endblock -%}
     <style>

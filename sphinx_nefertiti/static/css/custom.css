@@ -1,0 +1,90 @@
+.inline-icon {
+  vertical-align: -0.10em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  padding-bottom: 0em;
+  padding-top: 0em;
+}
+
+/* Hide the project title text next to the logo in the navbar brand */
+a.navbar-brand .brand-text,
+a.navbar-brand .brand-short-text {
+  display: none !important;
+}
+
+/* Optional: tighten spacing so the logo doesn't leave a gap */
+a.navbar-brand {
+  gap: 0 !important;          /* if the theme uses flex gap */
+}
+
+/* Optional: ensure logo is vertically aligned nicely */
+a.navbar-brand .project-logo {
+  margin-right: 0 !important;
+}
+
+
+.light {
+  --nftt-neutral-bg-rgb: 169, 138, 83 !important;
+  --nftt-foot2-bg: #E5D2B4 !important;
+}
+
+.dark {
+  --nftt-neutral-bg-rgb: 169, 138, 83 !important;
+  --nftt-foot2-bg: #664D03 !important;
+}
+
+.btn-primary {
+    --nftt-btn-bg: #ced4da !important;
+    --nftt-btn-border-color: #ced4da !important;
+}
+
+/* Sign-in button: black text, neutral border; dark-gold on hover */
+#snftt-signin-btn.btn-outline-primary {
+  /* Override the Bootstrap "primary" used by btn-outline-primary */
+  --bs-btn-color: var(--bs-body-color, #000) !important;
+  --bs-btn-border-color: rgba(0,0,0,0.25) !important;
+
+  --bs-btn-hover-color: #000 !important;
+  --bs-btn-hover-bg: #A98A53 !important;          /* dark gold */
+  --bs-btn-hover-border-color: #A98A53 !important;
+
+  --bs-btn-active-color: #000 !important;
+  --bs-btn-active-bg: #664D03 !important;         /* darker gold */
+  --bs-btn-active-border-color: #664D03 !important;
+
+  /* Optional: remove the default yellow-ish focus ring and make it gold-ish */
+  --bs-btn-focus-shadow-rgb: 169, 138, 83 !important;
+}
+
+/* If Nefertiti adds a focus ring via box-shadow, ensure it uses the same tone */
+#snftt-signin-btn.btn-outline-primary:focus,
+#snftt-signin-btn.btn-outline-primary:focus-visible {
+  box-shadow: 0 0 0 .25rem rgba(169, 138, 83, .35) !important;
+}
+
+/* Default: hide anything protected (prevents flash) */
+nav.toc li[data-protected],
+.toctree-wrapper li[data-protected] {
+  display: none !important;
+}
+
+/* When JS decides an item is allowed, it adds .docs-allowed */
+nav.toc li.docs-allowed,
+.toctree-wrapper li.docs-allowed {
+  display: list-item !important;
+}
+
+/* Add " > " separator between header links (breadcrumb style) */
+.nftt-header-links-large .nav-item + .nav-item::before,
+.nftt-header-links-small .nav-item + .nav-item::before {
+  content: "›";                 /* or ">" */
+  margin: 0 .5rem;
+  opacity: .75;
+}
+
+/* Make sure it aligns nicely */
+.nftt-header-links-large .nav-item,
+.nftt-header-links-small .nav-item {
+  display: inline-flex;
+  align-items: center;
+}
