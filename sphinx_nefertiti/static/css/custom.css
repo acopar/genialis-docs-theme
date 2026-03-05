@@ -88,3 +88,46 @@ nav.toc li.docs-allowed,
   display: inline-flex;
   align-items: center;
 }
+
+/* --- Confidential banner / warning alert styling --- */
+.alert.alert-warning {
+  /* Layout */
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin: 0.75rem 0 1rem 0;
+
+  /* Subtle left accent */
+  border-left: 0.35rem solid #A98A53;
+
+  /* Keep it from looking too "bootstrap default" */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* Light mode */
+.light .alert.alert-warning {
+  background: rgba(229, 210, 180, 0.45);  /* light gold wash */
+  border-top: 1px solid rgba(169, 138, 83, 0.35);
+  border-right: 1px solid rgba(169, 138, 83, 0.35);
+  border-bottom: 1px solid rgba(169, 138, 83, 0.35);
+  color: rgba(0,0,0,0.85);
+}
+
+/* Dark mode */
+.dark .alert.alert-warning {
+  background: rgba(169, 138, 83, 0.14);  /* muted gold wash */
+  border-top: 1px solid rgba(169, 138, 83, 0.30);
+  border-right: 1px solid rgba(169, 138, 83, 0.30);
+  border-bottom: 1px solid rgba(169, 138, 83, 0.30);
+  color: rgba(255,255,255,0.88);
+}
+
+/* Make links inside alert look intentional */
+.alert.alert-warning a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Optional: tighten icon/strong text spacing if you add an icon later */
+.alert.alert-warning strong {
+  font-weight: 700;
+}

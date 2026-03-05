@@ -305,6 +305,11 @@
             {%- if pagename != "search" -%}
               {% include "breadcrumbs.html" %}
             {% endif %}
+            {% if theme_confidential_banner %}
+              <div class="alert alert-warning mt-3" role="alert">
+                <strong>Confidential.</strong> This documentation is intended for authorized users only.
+              </div>
+            {% endif %}
             {%- block body %}
             {% endblock -%}
           </div>
